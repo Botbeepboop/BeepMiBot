@@ -9,7 +9,11 @@ def Split_CMD(SrcMessage):
     if (not SrcMessage.startswith('mcc')):
         return false
     if (SrcMessage.startswith('mcc?')):
-        return false
+        return {"cmd":"lst"}
+    if (SrcMessage.startswith('mcc+')):
+        return {"cmd":"add"}
+    if (SrcMessage.startswith('mcc-')):
+        return {"cmd":"dek"}
 
 
 class RtmEventHandler(object):
