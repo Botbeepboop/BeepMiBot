@@ -60,7 +60,7 @@ class RtmEventHandler(object):
                 if MCC:
                     self.msg_writer.send_message(event['channel'], 'This is my message! '+json.dumps(MCC))
                 elif '?' == msg_txt:
-                    self.msg_writer.send_message(event['channel'], json.dumps(event))
+                    self.msg_writer.send_message(event['channel'], json.dumps(event)+'\n'+json.dumps(self.log))
                 elif 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
                 elif re.search('hi|hey|hello|howdy', msg_txt):
