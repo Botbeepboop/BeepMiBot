@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 def Split_CMD(SrcMessage):
     if (not SrcMessage.startswith('mcc')):
-        return false
+        return False
     if (SrcMessage.startswith('mcc?')):
         return {"cmd":"lst"}
     if (SrcMessage.startswith('mcc+')):
