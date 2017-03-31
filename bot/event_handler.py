@@ -48,8 +48,8 @@ class RtmEventHandler(object):
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
                 if '?' == msg_txt:
-                    self.msg_writer.send_message(json.dumps(event))
-                if 'help' in msg_txt:
+                    self.msg_writer.send_message(event['channel'], json.dumps(event))
+                elif 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
