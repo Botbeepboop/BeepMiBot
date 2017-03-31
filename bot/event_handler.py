@@ -13,7 +13,7 @@ def Split_CMD(SrcMessage):
     if (SrcMessage.startswith('mcc+')):
         return {"cmd":"add"}
     if (SrcMessage.startswith('mcc-')):
-        return {"cmd":"dek"}
+        return {"cmd":"del"}
 
 
 class RtmEventHandler(object):
@@ -27,7 +27,7 @@ class RtmEventHandler(object):
             self._handle_by_type(event['type'], event)
 
     def _handle_by_type(self, event_type, event):
-        # See https://api.slack.com/rtm for a full list of events
+        # See https://api.slack.com/rtm for a full list of events        
         if event_type == 'error':
             # error
             self.msg_writer.write_error(event['channel'], json.dumps(event))
@@ -51,7 +51,10 @@ class RtmEventHandler(object):
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
-                if '?' == msg_txt:
+                MCC = Split_CMD(msg_txt)
+                if MCC:
+                    self.msg_writer.send_message(event['channel'], 'This is my message! '+json.dumps(MCC))
+                elif '?' == msg_txt:
                     self.msg_writer.send_message(event['channel'], json.dumps(event))
                 elif 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
