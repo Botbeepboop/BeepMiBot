@@ -5,13 +5,6 @@ import re
 logger = logging.getLogger(__name__)
 
 
-def Split_CMD(SrcMessage):
-    if (not SrcMessage.startswith('mcc')):
-        return false
-    if (SrcMessage.startswith('mcc?')):
-        return false
-
-
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
