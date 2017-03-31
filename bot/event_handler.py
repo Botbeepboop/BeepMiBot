@@ -5,6 +5,13 @@ import re
 logger = logging.getLogger(__name__)
 
 
+def Split_CMD(SrcMessage):
+    if (not SrcMessage.startswith('mcc')):
+        return false
+    if (SrcMessage.startswith('mcc?')):
+        return false
+
+
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
@@ -40,7 +47,7 @@ class RtmEventHandler(object):
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
-                if '?' = msg_txt:
+                if '?' == msg_txt:
                     self.msg_writer.send_message(json.dumps(event))
                 if 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
