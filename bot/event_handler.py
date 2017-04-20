@@ -50,9 +50,10 @@ class RtmEventHandler(object):
 
     def _handle_message(self, event):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
-        if event['team'] not in self.log:
-            self.log[str(event['team'])] ={}
-        self.log[str(event['team'])][str(event['user'])] = event
+        
+        #if event['team'] not in self.log:
+        #    self.log[str(event['team'])] ={}
+        #self.log[str(event['team'])][str(event['user'])] = event
         
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
 
