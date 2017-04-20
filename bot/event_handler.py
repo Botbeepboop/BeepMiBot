@@ -6,14 +6,18 @@ logger = logging.getLogger(__name__)
 
 
 def Split_CMD(SrcMessage):
-    if (not SrcMessage.startswith('mcc')):
-        return False
-    if (SrcMessage.startswith('mcc?')):
-        return {"cmd":"lst"}
-    if (SrcMessage.startswith('mcc+')):
-        return {"cmd":"add"}
-    if (SrcMessage.startswith('mcc-')):
-        return {"cmd":"del"}
+    if (SrcMessage.startswith('mcc')):
+        if (SrcMessage.startswith('mcc?')):
+            return {"cmd":"lst"}
+        if (SrcMessage.startswith('mcc+')):
+            return {"cmd":"add"}
+        if (SrcMessage.startswith('mcc-')):
+            return {"cmd":"del"}
+        
+    if (SrcMessage.startswith('sms:')):
+          return {"cmd":"sms"}
+        
+    return None;
 
 
 class RtmEventHandler(object):
