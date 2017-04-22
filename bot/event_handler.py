@@ -32,10 +32,10 @@ def Split_CMD(SrcMessage):
       
   if (SrcMessage.startswith('sms:')):
     hashes = FindHashes(SrcMessage, csRegStr4Hash)
-  if (hashes):
-    return {"cmd":"sms", 'hashes': hashes}
-  else:
-    return {"cmd":"sms", 'hashes': None}
+    if (hashes):
+      return {"cmd":"sms", 'hashes': hashes}
+    else:
+      return {"cmd":"sms", 'hashes': None}
  
   return None;
 
