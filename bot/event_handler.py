@@ -30,14 +30,14 @@ def Split_CMD(SrcMessage):
     if (SrcMessage.startswith('mcc-')):
       return {"cmd":"del"}
       
-    if (SrcMessage.startswith('sms:')):
-      hashes = FindHashes(SrcMessage, csRegStr4Hash)
-    if (hashes):
-      return {"cmd":"sms", 'hashes': hashes}
-    else:
-      {"cmd":"sms", 'hashes': None}
-      
-    return None;
+  if (SrcMessage.startswith('sms:')):
+    hashes = FindHashes(SrcMessage, csRegStr4Hash)
+  if (hashes):
+    return {"cmd":"sms", 'hashes': hashes}
+  else:
+    {"cmd":"sms", 'hashes': None}
+ 
+ return None;
 
 
 class RtmEventHandler(object):
