@@ -35,9 +35,9 @@ def Split_CMD(SrcMessage):
   if (hashes):
     return {"cmd":"sms", 'hashes': hashes}
   else:
-    {"cmd":"sms", 'hashes': None}
+    return {"cmd":"sms", 'hashes': None}
  
- return None;
+  return None;
 
 
 class RtmEventHandler(object):
