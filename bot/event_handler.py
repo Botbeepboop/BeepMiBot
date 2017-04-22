@@ -22,21 +22,21 @@ def FindHashes(srcStr, RegStr):
 
 
 def Split_CMD(SrcMessage):
-    if (SrcMessage.startswith('mcc')):
-        if (SrcMessage.startswith('mcc?')):
-            return {"cmd":"lst"}
-        if (SrcMessage.startswith('mcc+')):
-            return {"cmd":"add"}
-        if (SrcMessage.startswith('mcc-')):
-            return {"cmd":"del"}
-        
+  if (SrcMessage.startswith('mcc')):
+    if (SrcMessage.startswith('mcc?')):
+      return {"cmd":"lst"}
+    if (SrcMessage.startswith('mcc+')):
+      return {"cmd":"add"}
+    if (SrcMessage.startswith('mcc-')):
+      return {"cmd":"del"}
+      
     if (SrcMessage.startswith('sms:')):
-	  hashes = FindHashes(SrcMessage, csRegStr4Hash)
-	  if (hashes):
-        return {"cmd":"sms", 'hashes': hashes}
-	  else:
-	    {"cmd":"sms", 'hashes': None}
-        
+      hashes = FindHashes(SrcMessage, csRegStr4Hash)
+    if (hashes):
+      return {"cmd":"sms", 'hashes': hashes}
+    else:
+      {"cmd":"sms", 'hashes': None}
+      
     return None;
 
 
