@@ -3,6 +3,22 @@ import logging
 import re
 
 logger = logging.getLogger(__name__)
+csRegStr4Hash = '\B(?P<Type>[\@\#\$\%\&])(?P<Text>\S+)'
+
+
+def FindHashes(srcStr, RegStr):
+  #\B(?P<Type>[\@\#\$\%\&])(?P<Text>\S+)
+  regex = r'' +RegStr
+  matches = re.finditer(regex, srcStr, re.IGNORECASE | re.UNICODE) #
+  plain = []
+  for matchNum, match in enumerate(matches):
+    agr = match.groups()
+    k = agr[0]
+    word = agr[1]
+    plain.append({k: word})
+  if (len(plain) > 0):
+    return plain
+  return None
 
 
 def Split_CMD(SrcMessage):
@@ -15,7 +31,11 @@ def Split_CMD(SrcMessage):
             return {"cmd":"del"}
         
     if (SrcMessage.startswith('sms:')):
-          return {"cmd":"sms"}
+	  hashes = FindHashes(SrcMessage, csRegStr4Hash)
+	  if (hashes):
+        return {"cmd":"sms", 'hashes': hashes}
+	  else:
+	    {"cmd":"sms", 'hashes': None}
         
     return None;
 
